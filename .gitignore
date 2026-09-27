@@ -1,0 +1,31 @@
+# Archivos específicos solicitados
+.env
+*.env
+!.env.example
+.ejercicio
+.ejercicio/
+
+# Entornos virtuales de Python
+venv/
+.venv/
+env/
+ENV/
+
+# Caché y compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Metadatos del sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs y temporales
+*.log
