@@ -2,12 +2,16 @@ import os
 import re
 import dotenv
 import logging
+from pathlib import Path
 from pydantic import SecretStr
 from langchain_openai import OpenAIEmbeddings
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-dotenv.load_dotenv()
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+
+dotenv.load_dotenv(BASE_DIR / ".env")
 OPENAI_API_KEY: str | None = os.getenv("OPENAI_API_KEY")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME")
@@ -32,8 +36,9 @@ DIM = 1536
 METRIC = "cosine"
 CHUNK_SIZE = 600
 CHUNK_OVERLAP = 100
+ENCODING_NAME = "cl100k_base"
 TOP_K = 5
-NAMESPACE = "consultas-convivencia"
+PINECONE_NAMESPACE = "consultas-convivencia"
 EMBEDDING_MODEL = "text-embedding-3-small"
 
 def get_embeddings():
