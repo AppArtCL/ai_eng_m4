@@ -89,12 +89,13 @@ def esperar_conteo(index, esperado, timeout=30):
         stats = index.describe_index_stats()
         n = stats["namespaces"].get(config.PINECONE_NAMESPACE, {}).get("vector_count", 0)
         if n >= esperado:
-            return True
+            return n
         time.sleep(2)
     logging.error(f"Timeout alcanzado. Se esperaban {esperado} vectores, pero solo se contaron {n}.")
     return n
 
 def subir_a_pinecone(chunks):
+    config.validar_credenciales()
     vectorstore = PineconeVectorStore.from_documents(
         documents=chunks,
         embedding=config.get_embeddings(),

@@ -16,21 +16,19 @@ OPENAI_API_KEY: str | None = os.getenv("OPENAI_API_KEY")
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME")
 
-if not OPENAI_API_KEY:
-    logging.error("OPENAI_API_KEY no puede ser None o vacío.")
-    raise ValueError("OPENAI_API_KEY no puede ser None o vacío.")
-OPENAI_API_KEY_SECRET = SecretStr(OPENAI_API_KEY)
-
-if not PINECONE_API_KEY:
-    logging.error("PINECONE_API_KEY no puede ser None o vacío.")
-    raise ValueError("PINECONE_API_KEY no puede ser None o vacío.")
-
-if not PINECONE_INDEX_NAME:
-    logging.error("PINECONE_INDEX_NAME no puede ser None o vacío.")
-    raise ValueError("PINECONE_INDEX_NAME no puede ser None o vacío.")
-if not re.fullmatch(r"[a-z0-9-]{1,45}", PINECONE_INDEX_NAME):
-    logging.error(f"PINECONE_INDEX_NAME inválido: '{PINECONE_INDEX_NAME}'. Solo se permiten minúsculas, números y guiones (máx. 45 caracteres).")
-    raise ValueError(f"PINECONE_INDEX_NAME inválido: '{PINECONE_INDEX_NAME}'. Solo se permiten minúsculas, números y guiones (máx. 45 caracteres).")
+def validar_credenciales():
+    if not OPENAI_API_KEY:
+        logging.error("OPENAI_API_KEY no puede ser None o vacío.")
+        raise ValueError("OPENAI_API_KEY no puede ser None o vacío.")
+    if not PINECONE_API_KEY:
+        logging.error("PINECONE_API_KEY no puede ser None o vacío.")
+        raise ValueError("PINECONE_API_KEY no puede ser None o vacío.")
+    if not PINECONE_INDEX_NAME:
+        logging.error("PINECONE_INDEX_NAME no puede ser None o vacío.")
+        raise ValueError("PINECONE_INDEX_NAME no puede ser None o vacío.")
+    if not re.fullmatch(r"[a-z0-9-]{1,45}", PINECONE_INDEX_NAME):
+        logging.error(f"PINECONE_INDEX_NAME inválido: '{PINECONE_INDEX_NAME}'. Solo se permiten minúsculas, números y guiones (máx. 45 caracteres).")
+        raise ValueError(f"PINECONE_INDEX_NAME inválido: '{PINECONE_INDEX_NAME}'. Solo se permiten minúsculas, números y guiones (máx. 45 caracteres).")
 
 DIM = 1536
 METRIC = "cosine"
@@ -42,8 +40,10 @@ PINECONE_NAMESPACE = "consultas-convivencia"
 EMBEDDING_MODEL = "text-embedding-3-small"
 
 def get_embeddings():
+    validar_credenciales()
+    assert OPENAI_API_KEY is not None
     return OpenAIEmbeddings(
         model=EMBEDDING_MODEL,
-        api_key=OPENAI_API_KEY_SECRET,
+        api_key=SecretStr(OPENAI_API_KEY),
         dimensions=DIM,
     )

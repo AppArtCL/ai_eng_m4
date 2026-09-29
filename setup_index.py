@@ -4,6 +4,8 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
+config.validar_credenciales()
+
 pc = Pinecone(api_key=config.PINECONE_API_KEY)
 
 if not config.PINECONE_INDEX_NAME:
@@ -22,7 +24,11 @@ if config.PINECONE_INDEX_NAME not in indices_existentes:
     )
     logging.info(f"Índice {config.PINECONE_INDEX_NAME} creado exitosamente.")
 else:
-    logging.info(f"Índice {config.PINECONE_INDEX_NAME} ya existe.")
+    dim_actual = pc.describe_index(config.PINECONE_INDEX_NAME).dimension
+    if dim_actual != config.DIM:
+        logging.error(f"Dimensión del índice existente ({dim_actual}) no coincide con la configuración ({config.DIM}).")
+        raise ValueError(f"Dimensión del índice existente ({dim_actual}) no coincide con la configuración ({config.DIM}).")
+    logging.info(f"Usando índice existente: {config.PINECONE_INDEX_NAME}.")
 
 indice = pc.Index(config.PINECONE_INDEX_NAME)
 logging.info(f"Estado del índice {config.PINECONE_INDEX_NAME}: {indice.describe_index_stats()}")

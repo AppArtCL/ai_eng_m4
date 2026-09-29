@@ -1,9 +1,10 @@
 import os
 import logging
+import config
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-os.makedirs("data", exist_ok=True)
+os.makedirs(config.DATA_DIR, exist_ok=True)
 
 texto1 = """
 Convivencia Privada, Destino de las Unidades y Régimen de Tenencia de Mascotas
@@ -115,6 +116,6 @@ documentos = {
 }
 
 for nombre, contenido in documentos.items():
-    with open(os.path.join("data", nombre), "w", encoding="utf-8") as f:
+    with open(os.path.join(config.DATA_DIR, nombre), "w", encoding="utf-8") as f:
         f.write(contenido.strip())
         logging.info(f"Archivo {nombre} creado con éxito.")

@@ -29,3 +29,10 @@ Thumbs.db
 
 # Logs y temporales
 *.log
+
+# Plan de trabajo (no se sube)
+PLAN.md
+
+# Resultados de procesamiento
+resultados/
+resultados/*
