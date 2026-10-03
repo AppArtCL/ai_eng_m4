@@ -1,0 +1,46 @@
+⏳ Cargando el sistema (chunks, BM25 y conexión a Pinecone)...
+
+💬 Modo interactivo — consulta el sistema RAG híbrido (BM25 + Pinecone)
+   (escribe 'salir', 'exit', 'quit' o Ctrl+C para terminar)
+
+🧑 Tú: ¿Cuántas personas caben en el salón multiuso?
+
+📎 Top 5 fragmentos recuperados:
+
+  1. [espacios_comunes | Condiciones y Reglas de Utilización del Salón Común (Multiuso)]  (espacios_comunes-003)
+     El salón común, situado en el primer piso del inmueble, está destinado al esparcimiento y a la celebración de reuniones o eventos particulares organizados por los copropietarios. El Artículo Cuarto y ...
+
+  2. [espacios_comunes | Introducción]  (espacios_comunes-000)
+     El Edificio Riesco 6540 integra una variedad de dependencias e instalaciones colectivas concebidas para el esparcimiento, la seguridad, la administración y la vida comunitaria de los propietarios y mo...
+
+  3. [obras_mudanzas | Régimen de Estacionamientos de Visitas y Circulaciones Viales]  (obras_mudanzas-004)
+     El edificio cuenta con seis estacionamientos para visitas en superficie y diez en el primer subterráneo. Las letras d), s), v) e y) del Artículo Octavo fijan las normas viales del recinto: ⚬ Límite Te...
+
+  4. [espacios_comunes | Equipamiento Comunitario Adicional del Primer Piso]  (espacios_comunes-004)
+     El primer piso concentra los servicios primarios del edificio. Entre estos se encuentran: ⚬ Gimnasio y Guardería/Extensión de Gimnasio: Diseñados para la salud y recreación de los ocupantes, sujetos a...
+
+  5. [espacios_comunes | Régimen Integral de la Piscina del Condominio]  (espacios_comunes-001)
+     La piscina principal del edificio, ubicada a nivel del primer piso, es un bien de uso y dominio común calificado como recreativo conforme a las letras d) del Artículo Cuarto y w) del Artículo Octavo. ...
+--------------------------------------------------------------------------------
+🧑 Tú: ¿Me pueden multar si fumo en el pasillo?
+
+📎 Top 5 fragmentos recuperados:
+
+  1. [convivencia_privada | Normas de Convivencia, Emisiones de Humo y Ruido]  (convivencia_privada-003)
+     La tranquilidad y el descanso de los vecinos configuran una obligación esencial contemplada en las letras c), e) y q) del Artículo Octavo. Los residentes deben abstenerse de ejecutar actos o generar r...
+
+  2. [convivencia_privada | Procedimiento Sancionatorio y Régimen de Multas]  (convivencia_privada-004)
+     Cualquier transgresión a las obligaciones descritas en el Artículo Octavo o en los artículos transitorios activa el procedimiento disciplinario regulado en el Artículo Noveno: ⚬ Monto de la infracción...
+
+  3. [espacios_comunes | Preservación del Libre Tránsito y Prohibición de Ocupación]  (espacios_comunes-005)
+     Los copropietarios u ocupantes tienen derecho a servirse de los bienes comunes usándolos de manera prudencial en su destino ordinario. Las letras h), r) y s) del Artículo Octavo prohíben estrictamente...
+
+  4. [asados | Regulación Exhaustiva sobre Asados y Tipo de Parrillas]  (asados-001)
+     El régimen para la preparación de alimentos al aire libre, encendido de brasas y utilización de parrillas está taxativamente determinado en el Artículo Octavo, letra x). Dicha disposición establece la...
+
+  5. [convivencia_privada | Destino Exclusivo Habitacional y Prohibición Comercial]  (convivencia_privada-002)
+     El Artículo Octavo consagra que cada unidad de departamento debe ser utilizada en forma ordenada y tranquila, encontrándose destinada exclusivamente a fines de vivienda o habitación, según las autoriz...
+--------------------------------------------------------------------------------
+🧑 Tú: salir
+
+👋 Listo, terminamos la sesión.
