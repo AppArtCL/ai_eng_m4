@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "pregunta": "¿A cuántos centímetros del suelo debo guardar las cosas en la bodega?",
+    "documento_id_esperado": "convivencia_privada",
+    "seccion_esperada": "Destino Exclusivo Habitacional y Prohibición Comercial",
+    "tipo": "lexica"
+  },
+  {
+    "id": 2,
+    "pregunta": "Si me atraso en pagar los gastos comunes, ¿me pueden cortar la luz?",
+    "documento_id_esperado": "obras_mudanzas",
+    "seccion_esperada": "Gastos Comunes, Prorrateo Centralizado y Corte de Suministro",
+    "tipo": "semantica"
+  },
+  {
+    "id": 3,
+    "pregunta": "¿Puedo llevar amigos que no viven en el edificio a la piscina?",
+    "documento_id_esperado": "espacios_comunes",
+    "seccion_esperada": "Régimen Integral de la Piscina del Condominio",
+    "tipo": "semantica"
+  },
+  {
+    "id": 4,
+    "pregunta": "¿Se pueden hacer mudanzas los domingos?",
+    "documento_id_esperado": "obras_mudanzas",
+    "seccion_esperada": "Protocolo de Mudanzas y Carga en Ascensores",
+    "tipo": "lexica"
+  },
+  {
+    "id": 5,
+    "pregunta": "¿Está permitido guardar materiales inflamables en la terraza?",
+    "documento_id_esperado": "asados",
+    "seccion_esperada": "Prevención de Incendios y Materiales Inflamables",
+    "tipo": "lexica"
+  }
+]
