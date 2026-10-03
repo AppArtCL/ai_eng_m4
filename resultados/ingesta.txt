@@ -1,0 +1,4 @@
+2026-09-29 03:35:50,229 - INFO - Total de chunks procesados: 22.
+2026-09-29 03:35:50,229 - INFO - Metadata de ejemplo: {'doc_id': 'asados', 'source': 'asados.txt', 'titulo': 'Asados, Seguridad Contra Incendios, Balcones, Terrazas y Unidades Exclusivas', 'seccion': 'Introducción', 'chunk_index': 0, 'chunk_id': 'asados-000'}
+2026-09-29 03:35:52,166 - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-09-29 03:35:54,060 - INFO - Vectores en el namespace consultas-convivencia: 22.

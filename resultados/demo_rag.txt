@@ -1,0 +1,28 @@
+
+Consulta: ¿Puedo tener mascota?
+  1. convivencia_privada-001    | Tenencia y Regulación de Animales Domésticos o Mascotas
+  2. asados-001                 | Regulación Exhaustiva sobre Asados y Tipo de Parrillas
+  3. obras_mudanzas-005         | Gastos Comunes, Prorrateo Centralizado y Corte de Suministro
+  4. convivencia_privada-003    | Normas de Convivencia, Emisiones de Humo y Ruido
+  5. obras_mudanzas-004         | Régimen de Estacionamientos de Visitas y Circulaciones Viales
+
+Consulta: ¿Qué dice el reglamento sobre las UTM?
+  1. convivencia_privada-004    | Procedimiento Sancionatorio y Régimen de Multas
+  2. convivencia_privada-002    | Destino Exclusivo Habitacional y Prohibición Comercial
+  3. convivencia_privada-000    | Introducción
+  4. asados-003                 | Régimen de Terrazas, Balcones y Preservación de Fachadas
+  5. convivencia_privada-001    | Tenencia y Regulación de Animales Domésticos o Mascotas
+
+Consulta: Departamentos 101 y 104:
+  1. obras_mudanzas-001         | Normas sobre Reformas Interiores y Prohibición de Modificar Pisos
+  2. asados-004                 | Polígonos de Uso y Goce Exclusivo en Cubiertas y Jardines
+  3. convivencia_privada-002    | Destino Exclusivo Habitacional y Prohibición Comercial
+  4. asados-002                 | Prevención de Incendios y Materiales Inflamables
+  5. asados-001                 | Regulación Exhaustiva sobre Asados y Tipo de Parrillas
+
+Consulta: ¿Puedo hacer asados?
+  1. convivencia_privada-003    | Normas de Convivencia, Emisiones de Humo y Ruido
+  2. asados-001                 | Regulación Exhaustiva sobre Asados y Tipo de Parrillas
+  3. obras_mudanzas-005         | Gastos Comunes, Prorrateo Centralizado y Corte de Suministro
+  4. asados-000                 | Introducción
+  5. obras_mudanzas-004         | Régimen de Estacionamientos de Visitas y Circulaciones Viales

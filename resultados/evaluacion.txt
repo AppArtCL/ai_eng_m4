@@ -1,0 +1,35 @@
+================================================================================
+✅ #1 [lexica] ¿A cuántos centímetros del suelo debo guardar las cosas en la bodega?
+   Esperado: convivencia_privada | Recuperados: ['convivencia_privada', 'asados', 'convivencia_privada', 'obras_mudanzas', 'obras_mudanzas']
+   Recall@5: 100% | Precision@5: 40% | Sección correcta en top-5: sí
+
+✅ #2 [semantica] Si me atraso en pagar los gastos comunes, ¿me pueden cortar la luz?
+   Esperado: obras_mudanzas | Recuperados: ['convivencia_privada', 'convivencia_privada', 'obras_mudanzas', 'asados', 'obras_mudanzas']
+   Recall@5: 100% | Precision@5: 40% | Sección correcta en top-5: sí
+
+✅ #3 [semantica] ¿Puedo llevar amigos que no viven en el edificio a la piscina?
+   Esperado: espacios_comunes | Recuperados: ['espacios_comunes', 'espacios_comunes', 'asados', 'espacios_comunes', 'asados']
+   Recall@5: 100% | Precision@5: 60% | Sección correcta en top-5: sí
+
+✅ #4 [lexica] ¿Se pueden hacer mudanzas los domingos?
+   Esperado: obras_mudanzas | Recuperados: ['obras_mudanzas', 'obras_mudanzas', 'convivencia_privada', 'convivencia_privada', 'espacios_comunes']
+   Recall@5: 100% | Precision@5: 40% | Sección correcta en top-5: sí
+
+✅ #5 [lexica] ¿Está permitido guardar materiales inflamables en la terraza?
+   Esperado: asados | Recuperados: ['asados', 'asados', 'asados', 'convivencia_privada', 'asados']
+   Recall@5: 100% | Precision@5: 80% | Sección correcta en top-5: sí
+
+================================================================================
+📊 RECALL@5 PROMEDIO:    100.0%
+📊 PRECISION@5 PROMEDIO: 52.0%
+📊 SECCIÓN CORRECTA EN TOP-5: 100.0%
+
+================================================================================
+COMPARACIÓN DE CONFIGURACIONES (pesos = [BM25, vectorial])
+================================================================================
+Configuración         Recall@5   Prec@5  Sección     #1    #2    #3    #4    #5   ← Precision@5 por pregunta
+BM25 solo                 100%      56%      80%    60%   20%   60%   60%   80%
+Vectorial solo            100%      52%     100%    20%   40%   60%   60%   80%
+Híbrido 0.3 / 0.7         100%      52%     100%    20%   40%   60%   60%   80%
+Híbrido 0.5 / 0.5         100%      52%     100%    40%   40%   60%   40%   80%
+Híbrido 0.7 / 0.3         100%      56%      80%    60%   20%   60%   60%   80%

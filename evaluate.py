@@ -2,13 +2,27 @@ import json
 from typing import Protocol
 import config
 from langchain_core.documents import Document
+from langchain_core.retrievers import BaseRetriever
+from ingest import cargar_chunks
+from retrievers import crear_bm25, crear_vectorial
 from rag_system import RAGSystem
 
 GOLDEN_SET = config.BASE_DIR / "golden_set.json"
 SALIDA = config.BASE_DIR / "resultados" / "evaluacion.txt"
+PESOS_A_COMPARAR = [(0.3, 0.7), (0.5, 0.5), (0.7, 0.3)]   # [BM25, vectorial]
 
 class Recuperador(Protocol):
     def retrieve(self, query: str) -> list[Document]: ...
+
+
+# Adapta un retriever de LangChain (BM25 o vectorial solo) a la interfaz retrieve() que usa evaluar().
+class RetrieverSolo:
+    def __init__(self, retriever: BaseRetriever, k: int = config.TOP_K):
+        self.retriever = retriever
+        self.k = k
+
+    def retrieve(self, query: str) -> list[Document]:
+        return self.retriever.invoke(query)[:self.k]
 
 def recall_at_k(recuperados: list[str], esperado: str, k: int = config.TOP_K) -> float:
     return 1.0 if esperado in recuperados[:k] else 0.0
@@ -74,9 +88,48 @@ def formatear_reporte(reporte: dict) -> str:
     return "\n".join(lineas)
 
 
+# Evalúa BM25 solo, vectorial solo y el híbrido con cada combinación de pesos.
+# Los retrievers se crean una sola vez y se inyectan en cada RAGSystem.
+def comparar_configuraciones(golden_set: list[dict], k: int = config.TOP_K) -> dict[str, dict]:
+    bm25 = crear_bm25(cargar_chunks(), k)
+    vectorial = crear_vectorial(k)
+
+    sistemas: dict[str, Recuperador] = {
+        "BM25 solo": RetrieverSolo(bm25, k),
+        "Vectorial solo": RetrieverSolo(vectorial, k),
+    }
+    for pesos in PESOS_A_COMPARAR:
+        nombre = f"Híbrido {pesos[0]:.1f} / {pesos[1]:.1f}"
+        sistemas[nombre] = RAGSystem(k=k, pesos=pesos, bm25=bm25, vectorial=vectorial)
+
+    return {nombre: evaluar(sistema, golden_set, k) for nombre, sistema in sistemas.items()}
+
+
+def formatear_comparacion(resultados: dict[str, dict]) -> str:
+    primero = next(iter(resultados.values()))
+    k = primero["k"]
+    ids = [f"#{r['id']}" for r in primero["detalle"]]
+
+    lineas = [
+        "=" * 80,
+        f"COMPARACIÓN DE CONFIGURACIONES (pesos = [BM25, vectorial])",
+        "=" * 80,
+        f"{'Configuración':<20} {'Recall@' + str(k):>9} {'Prec@' + str(k):>8} {'Sección':>8}   "
+        + "  ".join(f"{i:>4}" for i in ids) + f"   ← Precision@{k} por pregunta",
+    ]
+    for nombre, rep in resultados.items():
+        por_pregunta = "  ".join(f"{r['precision']:>4.0%}" for r in rep["detalle"])
+        lineas.append(
+            f"{nombre:<20} {rep['recall_promedio']:>9.0%} {rep['precision_promedio']:>8.0%} "
+            f"{rep['seccion_promedio']:>8.0%}   {por_pregunta}"
+        )
+    return "\n".join(lineas)
+
+
 if __name__ == "__main__":
-    reporte = evaluar(RAGSystem(), cargar_golden_set())
-    texto = formatear_reporte(reporte)
+    golden_set = cargar_golden_set()
+    reporte = evaluar(RAGSystem(), golden_set)
+    texto = formatear_reporte(reporte) + "\n\n" + formatear_comparacion(comparar_configuraciones(golden_set))
     print(texto)
 
     SALIDA.parent.mkdir(exist_ok=True)
